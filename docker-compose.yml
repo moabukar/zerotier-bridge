@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  zerotier:
+    image: moabukar/zerotier:9ee0069
+    environment:
+      - NETWORK_IDS=<>
+      - ZTAUTHTOKEN=<>
+      - AUTOJOIN=true
+      - ZTHOSTNAME=local-docker
+    volumes:
+      - /var/lib/zerotier-one:/var/lib/zerotier-one
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
+    network_mode: host
+    devices: 
+      - /dev/net/tun
+    privileged: true
+    restart: unless-stopped

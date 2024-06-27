@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: zerotier-bridge
+spec:
+  containers:
+  - name: zt-bridge
+    image: moabukar/zerotier
+    env:
+    - name: NETWORK_IDS
+      valueFrom:
+        configMapKeyRef:
+          name: zerotier-networks
+          key: NETWORK_IDS
+    - name: ZTHOSTNAME
+      valueFrom:
+        configMapKeyRef:
+          name: zerotier-networks
+          key: ZTHOSTNAME
+    - name: ZTAUTHTOKEN
+      valueFrom:
+        configMapKeyRef:
+          name: zerotier-networks
+          key: ZTAUTHTOKEN
+    - name: AUTOJOIN
+      valueFrom:
+        configMapKeyRef:
+          name: zerotier-networks
+          key: AUTOJOIN
+    securityContext:
+      privileged: true
+      capabilities:
+        add:
+        - NET_ADMIN
+        - SYS_ADMIN
+        - CAP_NET_ADMIN
+      volumeMounts:
+      - name: dev-net-tun
+        mountPath: /dev/net/tun

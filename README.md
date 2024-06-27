@@ -13,3 +13,7 @@ kubectl apply -f k8s/zt-pod.yml
 Then authorise node from the UI.
 
 ```
+
+## Config
+
+- In order to route traffic to this POD have to add the proper rule on ZT Managed Routes section, to accomplish that you have to know the ZT address assigned to the pod and your Service and/or PODs subnet.

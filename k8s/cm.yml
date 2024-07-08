@@ -6,4 +6,4 @@ data:
   NETWORK_IDS: <>
   ZTAUTHTOKEN: <>
   AUTOJOIN: "true"
-  ZTHOSTNAME: local-k8s
+  ZTHOSTNAME: <env>-cluster
